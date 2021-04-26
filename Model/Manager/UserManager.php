@@ -1,6 +1,6 @@
 <?php
 
-namespace Model\User;
+namespace Model\Manager;
 
 use Model\DB;
 use Model\Entity\User;
@@ -32,12 +32,12 @@ class UserManager {
     }
 
     /**
-     * retourne un user via ses logs
+     * Return user by logs
      * @param string $name
      * @param $pass
-     * @return User
+     * @return User|string
      */
-    public function getUser(string $name, $pass): User {
+    public function getUser(string $name, $pass) {
 
         $request = DB::getInstance()->prepare("SELECT * FROM user WHERE username = :name");
         $request->bindValue(':name', $name);
@@ -52,5 +52,6 @@ class UserManager {
                 return $user;
             }
         }
+        return "test";
     }
 }
