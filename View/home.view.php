@@ -1,5 +1,5 @@
 <h1>Bienvenue sur ma super home page !</h1>
-<span>Welcome <?= $_SESSION['user']->getUsername() ?></span>
+<span>Welcome <?= $_SESSION['user']->getUsername() .", votre role : ". $_SESSION['user']->getRole(); ?></span>
 
 <div>
     <a href="?controller=articles">Consulter la liste de nos articles</a>

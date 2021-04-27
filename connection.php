@@ -14,6 +14,7 @@ if (isset($_POST['username'], $_POST['user-pass'])) {
     $userConnected = $manager->getUser($_POST['username'], $_POST['user-pass']);
 
     $_SESSION['user'] = $userConnected;
+
     header('location: index.php');
 }
 
