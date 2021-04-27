@@ -5,7 +5,7 @@ namespace Controller;
 use Controller\Traits\RenderViewTrait;
 use Model\Entity\Article;
 use Model\Manager\ArticleManager;
-use Model\User\UserManager;
+use Model\Manager\UserManager;
 
 class ArticleController {
 
@@ -27,7 +27,7 @@ class ArticleController {
      * Ajoute un nouvel article.
      */
     public function addArticle($fields){
-        if(isset($fields['content'], $fields['user'])) {
+        if(isset($fields['content'], $fields['user']) && ($_SESSION['user']->getRole() === 'Admin')) {
             // Alors ca veut dure que le formulaire a été envoyé.
             $userManager = new UserManager();
             $articleManager = new ArticleManager();
@@ -35,13 +35,15 @@ class ArticleController {
             $content = htmlentities($fields['content']);
             $user_fk = intval($fields['user']);
 
-            $user = $userManager->getById($user_fk);
-            if($user->getId()) {
+            $user = $userManager->getUser($_SESSION['user']->getUsername(), $_SESSION['user']->getPassword());
+            if($user) {
                 $article = new Article($content, $user);
                 $articleManager->add($article);
             }
         }
-
+        else if($_SESSION['user']->getRole() !== 'Admin'){
+            echo "Attention : Vous devez être Admin pour pouvoir poster un article !";
+        }
         $this->render('add.article', 'Ajouter un article');
     }
 }

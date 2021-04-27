@@ -7,7 +7,7 @@ use Model\Entity\Article;
 use Model\Entity\User;
 use Model\Manager\Traits\ManagerTrait;
 use Model\DB;
-use Model\User\UserManager;
+use Model\Manager\UserManager;
 
 class ArticleManager {
     use ManagerTrait;
@@ -37,6 +37,7 @@ class ArticleManager {
      * @return bool
      */
     public function add(Article $article) {
+
         $request = DB::getInstance()->prepare("
             INSERT INTO article (content, user_fk)
                 VALUES (:content, :ufk) 
@@ -46,5 +47,6 @@ class ArticleManager {
         $request->bindValue(':ufk', $article->getUser()->getId());
 
         return $request->execute() && DB::getInstance()->lastInsertId() != 0;
+
     }
 }
