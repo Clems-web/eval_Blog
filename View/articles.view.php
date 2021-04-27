@@ -1,6 +1,6 @@
+<button id="buttonAdd"><a href="?controller=articles&action=new">Add article</a></button>
 
 <div class="articles">
-    <a href="?controller=articles&action=new">Add article</a>
     <?php
     if(isset($var['articles'])) {
         foreach ($var['articles'] as $article) { ?>

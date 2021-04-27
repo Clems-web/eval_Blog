@@ -12,11 +12,12 @@ body {
     width: 100%;
 }
 
-.articles {
+.articles, #buttonAdd, #ButtonReturn {
     border: 1px solid cadetblue;
     border-radius: 0.5rem;
     padding: 1rem;
-    margin: 5rem;
+    margin-left: 5rem;
+    margin-top: 3rem;
     font-size: 1.8rem;
 }
 
@@ -36,4 +37,14 @@ input, textarea {
 
 .form-content {
     margin: 5rem;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+article {
+    border: 1px solid black;
+    margin-bottom: 3rem;
 }
